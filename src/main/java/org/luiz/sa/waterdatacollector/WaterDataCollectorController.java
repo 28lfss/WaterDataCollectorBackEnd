@@ -15,7 +15,7 @@ public class WaterDataCollectorController {
     @Autowired
     private WaterDataCollectorService service;
 
-    @PostMapping("/")
+    @GetMapping("/")
     public String index() throws SQLException {
         return "Greetings from Spring Boot!";
     }
