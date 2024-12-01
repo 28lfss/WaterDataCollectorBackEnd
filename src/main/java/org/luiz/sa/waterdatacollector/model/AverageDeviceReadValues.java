@@ -1,6 +1,6 @@
 package org.luiz.sa.waterdatacollector.model;
 
-public class AverageDevicReadValues {
+public class AverageDeviceReadValues {
     private float ph;
     private float temperature;
     private int tds;

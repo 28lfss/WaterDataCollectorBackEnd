@@ -1,6 +1,10 @@
-package org.luiz.sa.waterdatacollector;
+package org.luiz.sa.waterdatacollector.model;
 
 import jakarta.persistence.*;
+
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "water_data")
@@ -55,7 +59,21 @@ public class WaterData {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+        //this.timestamp = Instant.now().toEpochMilli();
     }
+
+/*    public Map<String, Object> getReadings() {
+        Map<String, Object> allData = new HashMap<>();
+        allData.put("ID", getId());
+        allData.put("Device ID", getDeviceId());
+        allData.put("Timestamp", getTimestamp());
+        allData.put("Temperature", getTemperature());
+        allData.put("pH", getPh());
+        allData.put("TDS", getTds());
+
+        return allData;
+    }
+ */
 }
