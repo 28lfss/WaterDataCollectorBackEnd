@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.luiz.sa.waterdatacollector.WaterDataCollectorApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-01T23:16:28" hostname="28LFSS" time="0.719">
+  <properties/>
+  <testcase name="contextLoads()" classname="org.luiz.sa.waterdatacollector.WaterDataCollectorApplicationTests" time="0.719"/>
+  <system-out><![CDATA[20:16:22.133 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.luiz.sa.waterdatacollector.WaterDataCollectorApplicationTests]: WaterDataCollectorApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:16:22.419 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.luiz.sa.waterdatacollector.WaterDataCollectorApplication for test class org.luiz.sa.waterdatacollector.WaterDataCollectorApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.6)
+
+2024-12-01T20:16:23.190-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] l.s.w.WaterDataCollectorApplicationTests : Starting WaterDataCollectorApplicationTests using Java 23.0.1 with PID 37916 (started by 28lfs in C:\Codes\IntelliJ\WaterDataCollector)
+2024-12-01T20:16:23.194-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] l.s.w.WaterDataCollectorApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2024-12-01T20:16:24.220-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-01T20:16:24.301-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 1 JPA repository interface.
+2024-12-01T20:16:25.156-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-01T20:16:25.248-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-01T20:16:25.312-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-01T20:16:25.835-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-01T20:16:26.999-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-01T20:16:27.003-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-01T20:16:27.467-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-01T20:16:28.038-03:00  WARN 37916 --- [WaterDataCollector] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-01T20:16:28.852-03:00  INFO 37916 --- [WaterDataCollector] [    Test worker] l.s.w.WaterDataCollectorApplicationTests : Started WaterDataCollectorApplicationTests in 6.046 seconds (process running for 8.339)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\28lfs\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.19\154da3a65b4f4a909d3e5bdec55d1b2b4cbb6ce1\byte-buddy-agent-1.14.19.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
