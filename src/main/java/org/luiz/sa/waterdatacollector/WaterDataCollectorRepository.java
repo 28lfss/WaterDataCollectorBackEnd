@@ -16,6 +16,9 @@ public interface WaterDataCollectorRepository extends JpaRepository<WaterData, L
     @Query(value = "SELECT * FROM water_data WHERE device_id = :deviceId ORDER BY timestamp DESC LIMIT 1", nativeQuery = true)
     WaterData findLastReadByDeviceId(@Param("deviceId") String deviceId);
 
+    @Query(value = "SELECT timestamp FROM water_data WHERE device_id = :deviceId AND timestamp > :timestamp", nativeQuery = true)
+    List<Long> getTimestampValuesByDeviceId(@Param("deviceId") String deviceId, @Param("timestamp") long timestamp);
+
     @Query(value = "SELECT ph FROM water_data WHERE device_id = :deviceId AND timestamp > :timestamp", nativeQuery = true)
     List<Float> getPhSensorsValuesByDeviceId(@Param("deviceId") String deviceId, @Param("timestamp") long timestamp);
 

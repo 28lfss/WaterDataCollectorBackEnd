@@ -1,9 +1,18 @@
 package org.luiz.sa.waterdatacollector.model;
 
-public class AverageDeviceReadValues {
+public class WaterDataSimplified {
+    private long timestamp;
     private float ph;
     private float temperature;
     private int tds;
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public float getPh() {
         return ph;

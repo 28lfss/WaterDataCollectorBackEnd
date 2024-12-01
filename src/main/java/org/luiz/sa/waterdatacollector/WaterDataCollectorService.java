@@ -1,7 +1,7 @@
 package org.luiz.sa.waterdatacollector;
 
-import org.luiz.sa.waterdatacollector.model.AverageDeviceReadValues;
-import org.luiz.sa.waterdatacollector.model.DeviceReadValues;
+import org.luiz.sa.waterdatacollector.model.WaterDataSimplified;
+import org.luiz.sa.waterdatacollector.model.WaterDataValuesLists;
 import org.luiz.sa.waterdatacollector.model.WaterData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,10 +44,11 @@ public class WaterDataCollectorService {
         return waterDataCollectorRepository.findDeviceIdLastHourReads(deviceId, timestamp);
     }
 
-    public DeviceReadValues loadAllSensorsValuesByDeviceId(String deviceId) {
+    public WaterDataValuesLists loadAllSensorsValuesByDeviceId(String deviceId) {
         long timestamp = loadLastReading(deviceId).getTimestamp();
         timestamp -= this.hourInMilliSeconds;
-        DeviceReadValues recentValues = new DeviceReadValues();
+        WaterDataValuesLists recentValues = new WaterDataValuesLists();
+        recentValues.setTimestamp(waterDataCollectorRepository.getTimestampValuesByDeviceId(deviceId, timestamp));
         recentValues.setPh(waterDataCollectorRepository.getPhSensorsValuesByDeviceId(deviceId, timestamp));
         recentValues.setTemperature(waterDataCollectorRepository.getTemperatureSensorsValuesByDeviceId(deviceId, timestamp));
         recentValues.setTds(waterDataCollectorRepository.getTdsSensorsValuesByDeviceId(deviceId, timestamp));
@@ -55,10 +56,11 @@ public class WaterDataCollectorService {
         return recentValues;
     }
 
-    public AverageDeviceReadValues averageValueLastHourReads(String deviceId) {
-        DeviceReadValues recentValues = loadAllSensorsValuesByDeviceId(deviceId);
-        AverageDeviceReadValues averageValues = new AverageDeviceReadValues();
+    public WaterDataSimplified averageValueLastHourReads(String deviceId) {
+        WaterDataValuesLists recentValues = loadAllSensorsValuesByDeviceId(deviceId);
+        WaterDataSimplified averageValues = new WaterDataSimplified();
 
+        long timestamp = 0;
         float averagePh = 0F;
         float averageTemperature = 0F;
         int averageTds = 0;
@@ -70,6 +72,7 @@ public class WaterDataCollectorService {
             averageTds += recentValues.getTds().get(i);
         }
 
+        averageValues.setTimestamp(recentValues.getTimestamp().getFirst());
         averageValues.setPh(averagePh / listSize);
         averageValues.setTemperature(averageTemperature / listSize);
         averageValues.setTds(averageTds / listSize);

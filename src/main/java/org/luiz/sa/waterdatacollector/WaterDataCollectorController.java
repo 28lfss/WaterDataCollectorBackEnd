@@ -1,14 +1,13 @@
 package org.luiz.sa.waterdatacollector;
 
-import org.luiz.sa.waterdatacollector.model.AverageDeviceReadValues;
-import org.luiz.sa.waterdatacollector.model.DeviceReadValues;
+import org.luiz.sa.waterdatacollector.model.WaterDataSimplified;
+import org.luiz.sa.waterdatacollector.model.WaterDataValuesLists;
 import org.luiz.sa.waterdatacollector.model.WaterData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.time.Instant;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -22,7 +21,7 @@ public class WaterDataCollectorController {
     }
 
     @GetMapping("/getLastHourReadsByDeviceId") // Return an object(DeviceReadValues) with a list of each sensor data in the past hour.
-    public DeviceReadValues lastHourReadingData(@RequestParam String deviceId) throws SQLException {
+    public WaterDataValuesLists lastHourReadingData(@RequestParam String deviceId) throws SQLException {
         return service.loadAllSensorsValuesByDeviceId(deviceId);
     }
 
@@ -32,19 +31,31 @@ public class WaterDataCollectorController {
     }
 
     @GetMapping("/getAverageValues") //Return an object(AverageDeviceReadValues) each contains the average of each sensor data, from the past hour.
-    public AverageDeviceReadValues averageValue(@RequestParam String deviceId) throws SQLException {
+    public WaterDataSimplified averageValue(@RequestParam String deviceId) throws SQLException {
         return service.averageValueLastHourReads(deviceId);
     }
 
     @PostMapping("/postDeviceData")
-    public void post() throws SQLException {
+    public void post(@RequestParam String deviceId, @RequestParam float ph, @RequestParam float temperature, @RequestParam int tds) throws SQLException {
         WaterData waterData = new WaterData();
-        waterData.setDeviceId("deviceId");
-        waterData.setPh(5.5f);
-        waterData.setTemperature(5.5f);
-        waterData.setTds(55);
+        waterData.setDeviceId(deviceId);
+        waterData.setPh(ph);
+        waterData.setTemperature(temperature);
+        waterData.setTds(tds);
         waterData.setTimestamp(Instant.now().toEpochMilli());
         service.saveData(waterData);
     }
 
 }
+
+/*
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=5&temperature=50&tds=500
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=1&temperature=10&tds=100
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=8&temperature=80&tds=800
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=3&temperature=30&tds=300
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=4&temperature=40&tds=400
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=2&temperature=20&tds=200
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=9&temperature=90&tds=900
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=6&temperature=60&tds=600
+http://localhost:8080/postDeviceData?deviceId=deviceId&ph=7&temperature=70&tds=700
+ */

@@ -2,10 +2,6 @@ package org.luiz.sa.waterdatacollector.model;
 
 import jakarta.persistence.*;
 
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
-
 @Entity
 @Table(name = "water_data")
 public class WaterData {
@@ -18,6 +14,8 @@ public class WaterData {
     private Float temperature;
     private String deviceId;
     private long timestamp;
+
+    public WaterData () {}
 
     public Long getId() {
         return id;
